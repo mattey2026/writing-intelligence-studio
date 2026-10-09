@@ -13,6 +13,8 @@
 
 > 🎯 **Purpose before prose. Evidence before claims. Original thinking before summaries.**
 
+📖 **Full documentation is in the [Wiki](https://github.com/mattey2026/writing-intelligence-studio/wiki):** [Installation](https://github.com/mattey2026/writing-intelligence-studio/wiki/Installation) · [User Guide](https://github.com/mattey2026/writing-intelligence-studio/wiki/User-Guide) · [Capabilities](https://github.com/mattey2026/writing-intelligence-studio/wiki/Capabilities) · [Technical Reference](https://github.com/mattey2026/writing-intelligence-studio/wiki/Technical-Reference) · [Roadmap](https://github.com/mattey2026/writing-intelligence-studio/wiki/Roadmap)
+
 ---
 
 ## 📸 Screenshots
