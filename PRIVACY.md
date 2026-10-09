@@ -12,6 +12,7 @@ The skills are instructions that guide Claude. Your conversation is handled by C
 When you open the workspace inside a Claude app:
 - **Writing requests** go to Claude through the app's own runtime and use your Claude usage. The page asks your permission the first time.
 - **Your library** (documents, versions, voice profiles, sources) is stored in the app's private per-user storage, which other people who open the page cannot read. A backup copy is kept in your browser's local storage.
+- **Error details** (the error message, which step you were on, and your browser type) are saved in the same private storage when something fails, so problems can be diagnosed. They contain no document text and are never sent anywhere else.
 - **Fonts** are loaded from Google Fonts (fonts.googleapis.com and fonts.gstatic.com).
 - **Search links** to Google and YouTube open only when you click them.
 - There are no analytics, cookies set by the plugin, tracking pixels or third-party scripts.

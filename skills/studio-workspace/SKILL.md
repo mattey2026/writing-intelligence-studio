@@ -22,6 +22,7 @@ The workspace is a single self-contained web page at `assets/studio.html`. It ru
 ## What the page does with data
 - Sends prompts built from the user's own brief, text and sources to Claude through the host app's runtime, using the user's own Claude usage.
 - Stores documents, versions, voice profiles and sources in the host app's per-user private storage, with a backup copy in the browser's local storage.
+- Records technical error details (message, step, browser type; no document text) in the same private storage when something fails.
 - Loads two fonts from Google Fonts.
 - Opens Google and YouTube search links only when the user clicks them.
 - Sends nothing to any other server, has no analytics and no tracking.

@@ -111,7 +111,7 @@ h2.sec{font-size:15px;font-weight:600;margin:32px 0 10px}
 .meta{font-size:12px;color:var(--muted)}
 .sheet{flex:1;overflow-y:auto;padding:32px 24px 80px}
 .sheet-inner{max-width:68ch;margin:0 auto}
-.doc-title{width:100%;border:0;background:none;font-family:var(--serif);font-size:32px;font-weight:500;line-height:1.2;padding:0;margin:0 0 18px;outline:none}
+.doc-title{display:block;resize:none;overflow:hidden;width:100%;border:0;background:none;font-family:var(--serif);font-size:32px;font-weight:500;line-height:1.2;padding:0;margin:0 0 18px;outline:none}
 .doc-body{overflow:hidden;width:100%;border:0;background:none;font-family:var(--serif);font-size:19px;line-height:1.7;resize:none;outline:none;min-height:60vh;padding:0}
 .reader{font-family:var(--serif);font-size:19px;line-height:1.7}
 .reader h1{font-size:30px;font-weight:500;line-height:1.2}
@@ -149,7 +149,8 @@ h2.sec{font-size:15px;font-weight:600;margin:32px 0 10px}
 .qbox{background:var(--accent-soft);border-radius:var(--r-m);padding:12px;margin-bottom:12px}
 .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
 .bar>span{display:block;height:100%;background:var(--accent)}
-.score{display:grid;grid-template-columns:1fr 34px;gap:2px 10px;align-items:center;font-size:13px;margin:8px 0}
+.score{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;font-size:13px;margin:8px 0}
+.score>strong{white-space:nowrap;text-align:right}
 .thumb{border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden;background:var(--paper)}
 .thumb img{display:block;width:100%}
 .stream{white-space:pre-wrap;font-family:var(--serif);font-size:15px;max-height:260px;overflow:auto;background:var(--paper);padding:10px;border-radius:var(--r-s)}
@@ -458,14 +459,14 @@ function renderEditor(){const d=app.cur;if(!d)return go("home");
   const left=h("aside",{class:"pane left","aria-label":"Workflow and outline"},
     h("ol",{class:"steps"},STEPS.map((s,i)=>h("li",null,h("button",{class:stepDone(i+1)?"done":"","aria-current":ed.step===i+1?"step":null,onclick:()=>{ed.step=i+1;renderEditor();if(innerWidth<=1000)setM("tool");}},s)))),
     h("h3",null,"Outline"),h("div",{class:"outline",id:"outline"}));
-  const title=h("input",{class:"doc-title",value:d.title,"aria-label":"Title",oninput:e=>{d.title=e.target.value;autosave();}});
+  const title=h("textarea",{class:"doc-title",id:"docTitle",rows:1,value:d.title,"aria-label":"Title",oninput:e=>{d.title=e.target.value.replace(/\n/g," ");autosave();growTitle();},onkeydown:e=>{if(e.key==="Enter"){e.preventDefault();$("#body")?.focus();}}});
   const body=h("textarea",{class:"doc-body",id:"body",value:d.body,"aria-label":"Document text",placeholder:"Start writing here, or follow the steps on the left to plan and draft with Claude. Markdown works: # for headings, **bold**, *italic*, - lists."});
   body.addEventListener("input",()=>{d.body=body.value;onBodyChange();});
   body.addEventListener("select",()=>{ed.lastSel=[body.selectionStart,body.selectionEnd];});
   body.addEventListener("keyup",()=>{ed.lastSel=[body.selectionStart,body.selectionEnd];});
   body.addEventListener("mouseup",()=>{ed.lastSel=[body.selectionStart,body.selectionEnd];});
   const reader=h("div",{class:"reader",id:"reader"});
-  const sheet=h("div",{class:"sheet",id:"sheet"},h("div",{class:"sheet-inner"},h("div",{id:"figure"}),title,ed.mode==="write"?body:reader));
+  const sheet=h("div",{class:"sheet",id:"sheet"},h("div",{class:"sheet-inner"},h("div",{id:"figure"}),ed.mode==="write"?title:(/^\s*#\s/.test(d.body)?null:h("h1",{class:"doc-title"},d.title)),ed.mode==="write"?body:reader));
   const canvas=h("section",{class:"canvas","aria-label":"Writing canvas"},
     h("div",{class:"ctool"},
       h("div",{class:"seg",role:"group","aria-label":"View"},h("button",{"aria-pressed":String(ed.mode==="write"),onclick:()=>{ed.mode="write";renderEditor();}},"Write"),h("button",{"aria-pressed":String(ed.mode==="read"),onclick:()=>{ed.mode="read";renderEditor();}},"Read")),
@@ -482,7 +483,8 @@ function stepDone(n){const d=app.cur;return{1:!!d.idea||d.title!=="Untitled",2:!
 const pushUndoTyping=debounce(()=>{const b=app.cur?.body;if(b!=null&&ed.undo[ed.undo.length-1]!==b){ed.undo.push(b);if(ed.undo.length>100)ed.undo.shift();ed.redo=[];}},1500);
 const outlineLater=debounce(()=>renderOutline(),600);
 function onBodyChange(){updateMeta();autosave();pushUndoTyping();outlineLater();}
-function growBody(){const b=$("#body");if(!b)return;const sh=$("#sheet"),top=sh?sh.scrollTop:0;b.style.height="auto";b.style.height=Math.max(b.scrollHeight,window.innerHeight*0.6)+"px";if(sh)sh.scrollTop=top;}
+function growTitle(){const t=$("#docTitle");if(!t)return;t.style.height="auto";t.style.height=t.scrollHeight+"px";}
+function growBody(){growTitle();const b=$("#body");if(!b)return;const sh=$("#sheet"),top=sh?sh.scrollTop:0;b.style.height="auto";b.style.height=Math.max(b.scrollHeight,window.innerHeight*0.6)+"px";if(sh)sh.scrollTop=top;}
 function updateMeta(){growBody();const w=words(app.cur.body);const el=$("#wc");const u=app.cur.usage;if(el)el.textContent=`${w.toLocaleString()} words, ${Math.max(1,Math.round(w/230))} min read`+(u?`, about ${fmtTok(u.in+u.out)} tokens used`:"");}
 function setBody(text,label){const d=app.cur;if(ed.undo[ed.undo.length-1]!==d.body)ed.undo.push(d.body);ed.redo=[];d.body=text;
   const b=$("#body");if(b)b.value=text;if(ed.mode==="read")renderReader();updateMeta();renderOutline();saveDoc();if(label)toast(label);}
