@@ -1,0 +1,15 @@
+{
+  "name": "mattey-writing-studio",
+  "displayName": "Writing Intelligence Studio",
+  "version": "1.0.0",
+  "description": "An editorial team for Claude: plans, researches, drafts, challenges, edits and reviews essays, articles, reports, technical guides and LinkedIn posts with selectable personas, cited sources, readability targets, AI-pattern removal and originality checks.",
+  "author": {
+    "name": "Sumit Mattey",
+    "email": "sumit@matteys.com",
+    "url": "https://github.com/mattey2026"
+  },
+  "homepage": "https://github.com/mattey2026/writing-intelligence-studio",
+  "repository": "https://github.com/mattey2026/writing-intelligence-studio",
+  "license": "MIT",
+  "keywords": ["writing", "editing", "research", "citations", "readability", "content", "linkedin", "essays", "technical-writing"]
+}
