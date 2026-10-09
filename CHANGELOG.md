@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.1.0 (2026-10-09)
+- Plugin icon added.
 - New README with screenshots, architecture diagrams and technical details.
 - Workspace: documents reopened from the online library are now editable (fixes Publish and Highest-value edits on reopened documents).
 - Workspace: long titles wrap instead of being cut off; the title no longer appears twice in Read mode.

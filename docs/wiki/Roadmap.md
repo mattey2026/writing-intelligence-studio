@@ -6,7 +6,7 @@ What Writing Intelligence Studio doesn't do yet, and how it could. Effort is a r
 
 | Item | Why | Effort |
 |---|---|---|
-| Plugin evals with `claude plugin eval` | Prove the plugin improves output against plain Claude, and catch regressions | S |
+| Automated before-and-after quality tests using Claude Code's built-in plugin testing | Prove the plugin improves output against plain Claude, and catch regressions | S |
 | Duplicate-section detection | Warn when edits create repeated headings | S |
 | Accessibility audit (keyboard paths, screen-reader labels, contrast) | Meet WCAG 2.2 AA throughout the workspace | S |
 | Error-log viewer in Settings | Let users see and clear their own recorded errors | S |
