@@ -13,7 +13,7 @@
 
 > 🎯 **Purpose before prose. Evidence before claims. Original thinking before summaries.**
 
-📖 **Full documentation is in the [Wiki](https://github.com/mattey2026/writing-intelligence-studio/wiki):** [Installation](https://github.com/mattey2026/writing-intelligence-studio/wiki/Installation) · [User Guide](https://github.com/mattey2026/writing-intelligence-studio/wiki/User-Guide) · [Capabilities](https://github.com/mattey2026/writing-intelligence-studio/wiki/Capabilities) · [Technical Reference](https://github.com/mattey2026/writing-intelligence-studio/wiki/Technical-Reference) · [Roadmap](https://github.com/mattey2026/writing-intelligence-studio/wiki/Roadmap)
+📖 **Full documentation is in the [Wiki](https://github.com/mattey2026/writing-intelligence-studio/wiki):** [Installation](https://github.com/mattey2026/writing-intelligence-studio/wiki/Installation) · [User Guide](https://github.com/mattey2026/writing-intelligence-studio/wiki/User-Guide) · [Capabilities](https://github.com/mattey2026/writing-intelligence-studio/wiki/Capabilities) · [Technical Reference](https://github.com/mattey2026/writing-intelligence-studio/wiki/Technical-Reference) · [Roadmap](https://github.com/mattey2026/writing-intelligence-studio/wiki/Roadmap) · [Privacy](PRIVACY.md)
 
 ---
 
@@ -221,7 +221,7 @@ claude --plugin-dir ./writing-intelligence-studio
 - No analytics, tracking, hooks, MCP servers, package installs or credentials.
 - This README displays badge images from shields.io when viewed on GitHub.
 
-See [PRIVACY.md](PRIVACY.md) for details.
+See the full [Privacy](PRIVACY.md) policy.
 
 ---
 
